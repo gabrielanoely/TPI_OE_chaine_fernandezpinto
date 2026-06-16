@@ -281,6 +281,36 @@ def existe_superposicion_sector(base_datos, empleado_actual, fecha_inicio, fecha
     return False
 
 
+def existe_superposicion_empleado(base_datos, empleado_actual, fecha_inicio, fecha_fin):
+    """
+    Valida que el mismo empleado no tenga ya una solicitud APROBADA
+    en el mismo rango de fechas o en un rango que se superponga.
+
+    Ejemplo:
+    - Solicitud existente: 2026-07-15 al 2026-07-20
+    - Nueva solicitud:      2026-07-15 al 2026-07-15
+
+    En ese caso devuelve True, porque el empleado ya tiene aprobada esa fecha.
+    """
+    legajo_actual = empleado_actual.get("legajo")
+
+    for id_solicitud in base_datos["solicitudes"]:
+        solicitud = base_datos["solicitudes"][id_solicitud]
+
+        misma_persona = solicitud.get("legajo") == legajo_actual
+        solicitud_aprobada = solicitud.get("estado", "").upper() == "APROBADA"
+
+        if misma_persona and solicitud_aprobada:
+            inicio_existente = convertir_fecha(solicitud.get("fecha_inicio", ""))
+            fin_existente = convertir_fecha(solicitud.get("fecha_fin", ""))
+
+            if inicio_existente is not None and fin_existente is not None:
+                if fechas_superpuestas(fecha_inicio, fecha_fin, inicio_existente, fin_existente):
+                    return True
+
+    return False
+
+
 # ============================================================
 # SOLICITUDES
 # ============================================================
@@ -378,7 +408,7 @@ def registrar_solicitud_rechazada(
     datos_guardados = guardar_base_de_datos(base_datos)
 
     if datos_guardados:
-        print("La solicitud rechazada fue registrada en solicitudes.csv.")
+        pass
     else:
         print("La solicitud fue rechazada, pero ocurrió un error al guardar los archivos.")
 
@@ -561,6 +591,26 @@ def generar_solicitud(base_datos, empleado):
         pausar()
         return
 
+    if existe_superposicion_empleado(base_datos, empleado, fecha_inicio, fecha_fin):
+        motivo_rechazo = "El empleado ya tiene una solicitud aprobada en esas fechas."
+
+        print("\nSolicitud rechazada.")
+        print(f"Motivo: {motivo_rechazo}")
+
+        registrar_solicitud_rechazada(
+            base_datos,
+            empleado,
+            texto_inicio,
+            texto_fin,
+            fecha_inicio,
+            fecha_fin,
+            dias_solicitados,
+            motivo_rechazo
+        )
+
+        pausar()
+        return
+
     if existe_superposicion_sector(base_datos, empleado, fecha_inicio, fecha_fin):
         motivo_rechazo = "Conflicto de cobertura del sector."
 
@@ -621,7 +671,7 @@ def main():
     base_datos = cargar_base_de_datos()
 
     if len(base_datos["empleados"]) == 0:
-        print("No hay empleados cargados. Verifique el archivo datos/empleados.csv.")
+        print("Error: no hay empleados cargados. Comunicate con RRHH para más información.")
         return
 
     mostrar_bienvenida()

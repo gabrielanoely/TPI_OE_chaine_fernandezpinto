@@ -6,3 +6,5 @@ id_solicitud,legajo,sector,fecha_inicio,fecha_fin,dias_solicitados,estado,motivo
 5,1006,Administracion,2026-09-01,2026-09-05,5,APROBADA,
 6,1003,Operaciones,2026-07-12,2026-07-16,5,RECHAZADA,Conflicto de fechas con otro empleado del mismo sector
 7,1011,Deposito,2026-08-12,2026-08-18,7,RECHAZADA,Saldo insuficiente
+8,1001,Coordinador de Trafico,2026-07-15,2026-07-15,1,APROBADA,
+9,1001,Coordinador de Trafico,2026-07-15,2026-07-15,1,RECHAZADA,El empleado ya tiene una solicitud aprobada en esas fechas.

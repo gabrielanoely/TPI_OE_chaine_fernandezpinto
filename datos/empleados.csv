@@ -1,9 +1,9 @@
 legajo,nombre,apellido,sector,dias_disponibles,estado
-1001,Nicolas,Chaine,Coordinador de Trafico,14,ACTIVO
+1001,Nicolas,Chaine,Coordinador de Trafico,13,ACTIVO
 1002,Gabriela,Fernandez Pinto,Deposito,10,ACTIVO
 1003,Martin,Gomez,Operaciones,7,ACTIVO
 1004,Ana,Lopez,Recursos Humanos,12,ACTIVO
-1005,Carla,Ruiz,Administracion,8,ACTIVO
+1005,Carla,Ruiz,Administracion,0,ACTIVO
 1006,Juan,Perez,Administracion,15,ACTIVO
 1007,Lucia,Fernandez,Administracion,6,ACTIVO
 1008,Sofia,Martinez,Atencion al Cliente,11,ACTIVO
