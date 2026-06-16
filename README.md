@@ -88,8 +88,12 @@ Para ejecutar el simulador se necesita:
 No es necesario instalar librerías externas. El programa utiliza herramientas incluidas en Python.
 
 ---
+## 4. Uso de GitHub y PAT
 
-## 4. Cómo ejecutar el programa
+El proyecto fue versionado utilizando Git y GitHub. Para la autenticación se utilizó un Personal Access Token de tipo fine-grained, configurado únicamente para este repositorio y con permisos mínimos necesarios para lectura y escritura del contenido.
+
+El token fue utilizado solo como credencial de autenticación al realizar operaciones de push mediante HTTPS. No fue incluido en el código fuente, archivos CSV, documentación ni historial de commits.
+## 5. Cómo ejecutar el programa
 
 ### Paso 1: Abrir la carpeta del proyecto
 
@@ -126,7 +130,7 @@ python3 app_licencias_vacaciones.py
 
 ---
 
-## 5. Funcionamiento general del simulador
+## 6. Funcionamiento general del simulador
 
 Al iniciar el programa, se muestra un mensaje de bienvenida y luego el **menú inicial**.
 
@@ -140,7 +144,7 @@ El usuario debe escribir el número de la opción deseada y presionar Enter.
 
 ---
 
-## 6. Menú inicial
+## 7. Menú inicial
 
 ### Opción 1: Ingresar legajo
 
@@ -182,7 +186,7 @@ Finaliza el programa.
 
 ---
 
-## 7. Menú principal
+## 8. Menú principal
 
 Cuando el legajo es válido y el empleado está activo, se muestra el menú principal.
 
@@ -195,7 +199,7 @@ MENÚ PRINCIPAL
 
 ---
 
-## 8. Consultar saldo de vacaciones
+## 9. Consultar saldo de vacaciones
 
 Si el usuario elige la opción 1, el sistema muestra:
 
@@ -217,7 +221,7 @@ Luego el sistema solicita presionar Enter para volver al menú principal.
 
 ---
 
-## 9. Generar solicitud de vacaciones
+## 10. Generar solicitud de vacaciones
 
 Si el usuario elige la opción 2, el sistema inicia el proceso de carga de una solicitud.
 
@@ -247,7 +251,7 @@ Ejemplo válido:
 
 ---
 
-## 10. Validaciones de fechas
+## 11. Validaciones de fechas
 
 El sistema controla que las fechas ingresadas sean correctas.
 
@@ -284,7 +288,7 @@ Si la fecha de inicio ya pasó, el sistema no permite continuar con la solicitud
 
 ---
 
-## 11. Reglas de aprobación y rechazo
+## 12. Reglas de aprobación y rechazo
 
 Una vez que las fechas son válidas, el sistema evalúa las reglas de negocio.
 
@@ -321,7 +325,7 @@ La solicitud se rechaza y se guarda en `solicitudes.csv` cuando ocurre alguno de
 
 ---
 
-## 12. Motivos de rechazo
+## 13. Motivos de rechazo
 
 ### Falta de días disponibles
 
@@ -378,7 +382,7 @@ Motivo: Conflicto de cobertura del sector.
 
 ---
 
-## 13. Diferencia entre error de carga y rechazo
+## 14. Diferencia entre error de carga y rechazo
 
 Es importante diferenciar estos dos casos.
 
@@ -409,7 +413,7 @@ Estos casos sí se guardan en `solicitudes.csv` con estado `RECHAZADA` y su moti
 
 ---
 
-## 14. Archivos que se modifican durante el uso
+## 15. Archivos que se modifican durante el uso
 
 ### Cuando se consulta saldo
 
@@ -432,7 +436,7 @@ En este caso, `empleados.csv` no se modifica porque no se descuentan días.
 
 ---
 
-## 15. Recomendaciones antes de probar el sistema
+## 16. Recomendaciones antes de probar el sistema
 
 Antes de ejecutar pruebas, se recomienda:
 
@@ -444,7 +448,7 @@ Antes de ejecutar pruebas, se recomienda:
 
 ---
 
-## 16. Problemas comunes
+## 17. Problemas comunes
 
 ### El programa dice que no encuentra empleados.csv
 
@@ -480,7 +484,7 @@ Revisar en `solicitudes.csv` si ya existe otra solicitud aprobada del mismo sect
 
 ---
 
-## 17. Cierre del sistema
+## 18. Cierre del sistema
 
 Para finalizar el sistema, se debe elegir la opción **Salir** desde el menú inicial o desde el menú principal.
 
@@ -488,7 +492,7 @@ El sistema mostrará un mensaje de despedida y terminará la ejecución.
 
 ---
 
-## 18. Resumen del flujo de uso
+## 19. Resumen del flujo de uso
 
 ```text
 Inicio del programa
@@ -514,6 +518,6 @@ Fin o nueva operación
 
 ---
 
-## 19. Aclaración final
+## 20. Aclaración final
 
 Este sistema es una simulación académica. Su objetivo es representar cómo podría automatizarse un proceso administrativo de Recursos Humanos mediante un chatbot básico, utilizando Python y archivos CSV como base de datos simulada.
